@@ -11,7 +11,7 @@ const displayProduct = (data) => {
     card.classList.add("card", "m-2");
     card.innerHTML = `
             <div class="bookmark-icon">
-              <i class="fa-solid fa-bookmark"></i>
+              <i onClick="handleBookmark('${product.name}','${product.id}','${product.price}')" class="fa-solid fa-bookmark"></i>
               <i class="fa-regular fa-bookmark"></i>
           </div>
           <div class="product-img-container">
@@ -30,6 +30,20 @@ const displayProduct = (data) => {
             `;
     cards.appendChild(card);
   });
+};
+
+// handle bookmark
+
+const handleBookmark = (name, id, price) => {
+  const previousBookmark = JSON.parse(localStorage.getItem("bookmark"));
+  let bookmark = [];
+  const product = { name, id, price, bookmark: true };
+  if (previousBookmark) {
+    console.log("ase");
+  } else {
+    bookmark.push(product);
+    localStorage.setItem("bookmark", JSON.stringify(bookmark));
+  }
 };
 
 loadProduct();
