@@ -39,7 +39,10 @@ const handleBookmark = (name, id, price) => {
   let bookmark = [];
   const product = { name, id, price, bookmark: true };
   if (previousBookmark) {
-    console.log("ase");
+    const isThisProductMarked = previousBookmark.find((pd) => pd.id === id);
+    if (isThisProductMarked) {
+      alert("Already bookmarked");
+    }
   } else {
     bookmark.push(product);
     localStorage.setItem("bookmark", JSON.stringify(bookmark));
